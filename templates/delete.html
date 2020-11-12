@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Widok usuwania
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Chcesz usunac obiekt {{ object }} ??</p>
+        <input type="submit" value="potwierdz">
+    </form>
+
+{% endblock %}

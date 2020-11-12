@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block title %}Listing{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Nazwa</th>
+        <th>Wlasciciel</th>
+        <th>Data rejestracji</th>
+        <th>Kategoria</th>
+        <th>Adres</th>
+        <th>Akcje</th>
+    </tr>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ object.name }}</td>
+            <td>{{ object.owner }}</td>
+            <td>{{ object.registration_date }}</td>
+            <td>{{ object.category.get_name_display }}</td>
+            <td>
+                <ul>
+                    {% for single_address in object.address.all %}
+                        <li>{{ single_address.street }}, {{ single_address.city }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{% url 'company:details' object.pk %}">Szczegóły</a> |
+                Edycja |
+                <a href="{% url 'company:delete' object.pk %}">Usuń</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
