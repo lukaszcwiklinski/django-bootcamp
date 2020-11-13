@@ -27,7 +27,7 @@
             </td>
             <td>
                 <a href="{% url 'company:details' object.pk %}">Szczegóły</a> |
-                Edycja |
+                <a href="{% url 'company:edit' object.pk %}">Edycja</a> |
                 <a href="{% url 'company:delete' object.pk %}">Usuń</a>
             </td>
         </tr>

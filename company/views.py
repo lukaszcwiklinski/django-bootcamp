@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, FormView, UpdateView
 
+from company.form import EditForm
 from company.models import Company
 
 
@@ -29,3 +30,10 @@ class Delete(DeleteView):
     #     company.save(update_fields=['is_active'])
     #
     #     return redirect('company:list')
+
+
+class Edit(UpdateView):
+    model = Company
+    template_name = 'edit.html'
+    success_url = reverse_lazy('company:list')
+    fields = ['name', 'owner', 'category']
